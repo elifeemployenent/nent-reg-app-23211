@@ -23,7 +23,7 @@ export const AdminAuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = (username: string, password: string): boolean => {
-    if (username === 'eva' && password === '123') {
+    if ((username === 'eva' || username === 'sajna') && password === '123') {
       setIsAdminLoggedIn(true);
       setCurrentAdminName(username);
       localStorage.setItem('adminAuth', 'true');
