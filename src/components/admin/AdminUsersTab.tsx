@@ -16,7 +16,6 @@ interface AdminUser {
   id: string;
   username: string;
   full_name: string;
-  email: string;
   is_active: boolean;
   created_at: string;
   updated_at: string;
@@ -53,7 +52,6 @@ export default function AdminUsersTab() {
     username: '',
     password: '',
     full_name: '',
-    email: '',
     is_active: true
   });
 
@@ -132,7 +130,6 @@ export default function AdminUsersTab() {
       username: '',
       password: '',
       full_name: '',
-      email: '',
       is_active: true
     });
     setSelectedPermissions([]);
@@ -154,7 +151,6 @@ export default function AdminUsersTab() {
           username: formData.username,
           password_hash,
           full_name: formData.full_name,
-          email: formData.email,
           is_active: formData.is_active,
           created_by: 'admin'
         }])
@@ -193,7 +189,6 @@ export default function AdminUsersTab() {
     try {
       const updateData: any = {
         full_name: formData.full_name,
-        email: formData.email,
         is_active: formData.is_active
       };
 
@@ -291,7 +286,6 @@ export default function AdminUsersTab() {
       username: user.username,
       password: '',
       full_name: user.full_name,
-      email: user.email || '',
       is_active: user.is_active
     });
     setShowEditDialog(true);
@@ -362,16 +356,6 @@ export default function AdminUsersTab() {
                   placeholder="Enter full name"
                 />
               </div>
-              <div>
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  placeholder="Enter email"
-                />
-              </div>
               <div className="flex items-center space-x-2">
                 <Checkbox
                   id="isActive"
@@ -420,7 +404,6 @@ export default function AdminUsersTab() {
               <TableRow>
                 <TableHead>Username</TableHead>
                 <TableHead>Full Name</TableHead>
-                <TableHead>Email</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Created</TableHead>
                 <TableHead>Last Login</TableHead>
@@ -432,7 +415,6 @@ export default function AdminUsersTab() {
                 <TableRow key={user.id}>
                   <TableCell className="font-medium">{user.username}</TableCell>
                   <TableCell>{user.full_name}</TableCell>
-                  <TableCell>{user.email || '-'}</TableCell>
                   <TableCell>
                     <Badge variant={user.is_active ? "default" : "secondary"}>
                       {user.is_active ? 'Active' : 'Inactive'}
@@ -514,15 +496,6 @@ export default function AdminUsersTab() {
                 id="editFullName"
                 value={formData.full_name}
                 onChange={(e) => setFormData(prev => ({ ...prev, full_name: e.target.value }))}
-              />
-            </div>
-            <div>
-              <Label htmlFor="editEmail">Email</Label>
-              <Input
-                id="editEmail"
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
               />
             </div>
             <div className="flex items-center space-x-2">
