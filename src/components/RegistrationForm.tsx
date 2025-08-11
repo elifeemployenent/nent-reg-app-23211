@@ -122,42 +122,45 @@ const RegistrationForm = ({ category, onSuccess }: RegistrationFormProps) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 px-1">
         <div className="space-y-2">
-          <Label htmlFor="fullName">Full Name * / പൂർണ്ണ നാമം *</Label>
+          <Label htmlFor="fullName" className="text-sm sm:text-base">Full Name * / പൂർണ്ണ നാമം *</Label>
           <Input
             id="fullName"
             value={formData.fullName}
             onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
             required
+            className="text-sm sm:text-base"
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="mobileNumber">Mobile Number * / മൊബൈൽ നമ്പർ *</Label>
+          <Label htmlFor="mobileNumber" className="text-sm sm:text-base">Mobile Number * / മൊബൈൽ നമ്പർ *</Label>
           <Input
             id="mobileNumber"
             type="tel"
             value={formData.mobileNumber}
             onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
             required
+            className="text-sm sm:text-base"
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="address">Address * / വിലാസം *</Label>
+          <Label htmlFor="address" className="text-sm sm:text-base">Address * / വിലാസം *</Label>
           <Textarea
             id="address"
             value={formData.address}
             onChange={(e) => setFormData({ ...formData, address: e.target.value })}
             required
+            className="text-sm sm:text-base min-h-[80px]"
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="panchayath">Panchayath / പഞ്ചായത്ത്</Label>
+          <Label htmlFor="panchayath" className="text-sm sm:text-base">Panchayath / പഞ്ചായത്ത്</Label>
           <Select value={formData.panchayathId} onValueChange={(value) => setFormData({ ...formData, panchayathId: value })}>
-            <SelectTrigger>
+            <SelectTrigger className="text-sm sm:text-base">
               <SelectValue placeholder="Select Panchayath" />
             </SelectTrigger>
             <SelectContent>
@@ -171,29 +174,31 @@ const RegistrationForm = ({ category, onSuccess }: RegistrationFormProps) => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="ward">Ward * / വാർഡ് *</Label>
+          <Label htmlFor="ward" className="text-sm sm:text-base">Ward * / വാർഡ് *</Label>
           <Input
             id="ward"
             value={formData.ward}
             onChange={(e) => setFormData({ ...formData, ward: e.target.value })}
             required
+            className="text-sm sm:text-base"
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="agent">Agent / P.R.O / ഏജന്റ് / പി.ആർ.ഒ (optional)</Label>
+          <Label htmlFor="agent" className="text-sm sm:text-base">Agent / P.R.O / ഏജന്റ് / പി.ആർ.ഒ (optional)</Label>
           <Input
             id="agent"
             value={formData.agent}
             onChange={(e) => setFormData({ ...formData, agent: e.target.value })}
+            className="text-sm sm:text-base"
           />
         </div>
 
         {category.name_english === 'Job Card (Special)' && (
           <div className="space-y-2">
-            <Label htmlFor="preference">Preference Category</Label>
+            <Label htmlFor="preference" className="text-sm sm:text-base">Preference Category</Label>
             <Select value={formData.preferenceId} onValueChange={(value) => setFormData({ ...formData, preferenceId: value })}>
-              <SelectTrigger>
+              <SelectTrigger className="text-sm sm:text-base">
                 <SelectValue placeholder="Select Preference" />
               </SelectTrigger>
               <SelectContent>
@@ -207,23 +212,23 @@ const RegistrationForm = ({ category, onSuccess }: RegistrationFormProps) => {
           </div>
         )}
 
-        <Button type="submit" disabled={loading} className="w-full" size="lg">
+        <Button type="submit" disabled={loading} className="w-full text-sm sm:text-base" size="lg">
           {loading ? 'Submitting...' : 'Submit Registration'}
         </Button>
       </form>
 
       <Dialog open={showSuccess} onOpenChange={handleSuccessClose}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="w-[90vw] max-w-md mx-4">
           <DialogHeader>
-            <DialogTitle className="text-center text-2xl">Congratulations!</DialogTitle>
+            <DialogTitle className="text-center text-xl sm:text-2xl">Congratulations!</DialogTitle>
           </DialogHeader>
           <div className="text-center space-y-4">
-            <p className="text-lg">Your registration has been submitted successfully!</p>
+            <p className="text-base sm:text-lg">Your registration has been submitted successfully!</p>
             <div className="bg-primary/10 border border-primary rounded-lg p-4">
-              <p className="font-semibold">Your Customer ID:</p>
-              <p className="text-2xl font-bold text-primary">{generatedId}</p>
+              <p className="font-semibold text-sm sm:text-base">Your Customer ID:</p>
+              <p className="text-xl sm:text-2xl font-bold text-primary">{generatedId}</p>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs sm:text-sm text-muted-foreground">
               Please save this ID for future reference. You can use it to check your registration status.
             </p>
             <Button onClick={handleSuccessClose} className="w-full">

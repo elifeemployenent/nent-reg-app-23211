@@ -48,30 +48,30 @@ const AdminPanel = () => {
         </div>
         
         <Tabs defaultValue="registrations" className="w-full">
-          <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
-            <TabsList className="flex w-max sm:w-full sm:grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 h-auto p-1 gap-1">
-              <TabsTrigger value="registrations" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit">
+          <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-6">
+            <TabsList className="flex w-max min-w-full h-auto p-1 gap-1 bg-muted">
+              <TabsTrigger value="registrations" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
                 Registrations
               </TabsTrigger>
-              <TabsTrigger value="categories" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit">
+              <TabsTrigger value="categories" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
                 Categories
               </TabsTrigger>
-              <TabsTrigger value="panchayaths" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit">
+              <TabsTrigger value="panchayaths" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
                 Panchayaths
               </TabsTrigger>
-              <TabsTrigger value="announcements" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit">
+              <TabsTrigger value="announcements" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
                 Announcements
               </TabsTrigger>
-              <TabsTrigger value="utilities" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit">
+              <TabsTrigger value="utilities" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
                 Utilities
               </TabsTrigger>
-              <TabsTrigger value="accounts" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit">
+              <TabsTrigger value="accounts" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
                 Accounts
               </TabsTrigger>
-              <TabsTrigger value="reports" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit">
+              <TabsTrigger value="reports" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
                 Reports
               </TabsTrigger>
-              <TabsTrigger value="admin-users" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit">
+              <TabsTrigger value="admin-users" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
                 Admin Users
               </TabsTrigger>
             </TabsList>

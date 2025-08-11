@@ -97,9 +97,9 @@ const Categories = () => {
 
       {/* Registration Form Dialog */}
       <Dialog open={showRegistrationForm} onOpenChange={setShowRegistrationForm}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="w-[95vw] max-w-lg sm:max-w-2xl max-h-[90vh] overflow-y-auto mx-2 sm:mx-4">
           <DialogHeader>
-            <DialogTitle className="text-2xl">
+            <DialogTitle className="text-xl sm:text-2xl">
               Registration for {selectedCategory?.name_english}
             </DialogTitle>
           </DialogHeader>
