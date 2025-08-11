@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAdminAuth } from '@/hooks/useAdminAuth';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Navigation from '@/components/Navigation';
 import RegistrationsTab from '@/components/admin/RegistrationsTab';
 import CategoriesTab from '@/components/admin/CategoriesTab';
@@ -13,10 +13,32 @@ import AccountsTab from '@/components/admin/AccountsTab';
 import ReportsTab from '@/components/admin/ReportsTab';
 import AdminUsersTab from '@/components/admin/AdminUsersTab';
 import NotificationBell from '@/components/admin/NotificationBell';
+import { 
+  Users, 
+  Grid3X3, 
+  MapPin, 
+  Bell, 
+  Wrench, 
+  CreditCard, 
+  FileText, 
+  Shield 
+} from 'lucide-react';
 
 const AdminPanel = () => {
   const { isAdminLoggedIn, logout } = useAdminAuth();
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState('registrations');
+
+  const tabs = [
+    { id: 'registrations', label: 'Registrations', icon: Users },
+    { id: 'categories', label: 'Categories', icon: Grid3X3 },
+    { id: 'panchayaths', label: 'Panchayaths', icon: MapPin },
+    { id: 'announcements', label: 'Announcements', icon: Bell },
+    { id: 'utilities', label: 'Utilities', icon: Wrench },
+    { id: 'accounts', label: 'Accounts', icon: CreditCard },
+    { id: 'reports', label: 'Reports', icon: FileText },
+    { id: 'admin-users', label: 'Admin Control', icon: Shield },
+  ];
 
   useEffect(() => {
     if (!isAdminLoggedIn) {
@@ -27,6 +49,29 @@ const AdminPanel = () => {
   const handleLogout = () => {
     logout();
     navigate('/admin/login');
+  };
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'registrations':
+        return <RegistrationsTab />;
+      case 'categories':
+        return <CategoriesTab />;
+      case 'panchayaths':
+        return <PanchayathsTab />;
+      case 'announcements':
+        return <AnnouncementsTab />;
+      case 'utilities':
+        return <UtilitiesTab />;
+      case 'accounts':
+        return <AccountsTab />;
+      case 'reports':
+        return <ReportsTab />;
+      case 'admin-users':
+        return <AdminUsersTab />;
+      default:
+        return <RegistrationsTab />;
+    }
   };
 
   if (!isAdminLoggedIn) {
@@ -47,68 +92,33 @@ const AdminPanel = () => {
           </div>
         </div>
         
-        <Tabs defaultValue="registrations" className="w-full">
-          <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-6">
-            <TabsList className="flex w-max min-w-full h-auto p-1 gap-1 bg-muted">
-              <TabsTrigger value="registrations" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
-                Registrations
-              </TabsTrigger>
-              <TabsTrigger value="categories" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
-                Categories
-              </TabsTrigger>
-              <TabsTrigger value="panchayaths" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
-                Panchayaths
-              </TabsTrigger>
-              <TabsTrigger value="announcements" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
-                Announcements
-              </TabsTrigger>
-              <TabsTrigger value="utilities" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
-                Utilities
-              </TabsTrigger>
-              <TabsTrigger value="accounts" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
-                Accounts
-              </TabsTrigger>
-              <TabsTrigger value="reports" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
-                Reports
-              </TabsTrigger>
-              <TabsTrigger value="admin-users" className="whitespace-nowrap text-xs sm:text-sm px-2 sm:px-3 min-w-fit flex-shrink-0">
-                Admin Users
-              </TabsTrigger>
-            </TabsList>
-          </div>
-          
-          <TabsContent value="registrations">
-            <RegistrationsTab />
-          </TabsContent>
-          
-          <TabsContent value="categories">
-            <CategoriesTab />
-          </TabsContent>
-          
-          <TabsContent value="panchayaths">
-            <PanchayathsTab />
-          </TabsContent>
-          
-          <TabsContent value="announcements">
-            <AnnouncementsTab />
-          </TabsContent>
-          
-          <TabsContent value="utilities">
-            <UtilitiesTab />
-          </TabsContent>
-          
-          <TabsContent value="accounts">
-            <AccountsTab />
-          </TabsContent>
-          
-          <TabsContent value="reports">
-            <ReportsTab />
-          </TabsContent>
-          
-          <TabsContent value="admin-users">
-            <AdminUsersTab />
-          </TabsContent>
-        </Tabs>
+        {/* Tab Cards Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+          {tabs.map((tab) => {
+            const IconComponent = tab.icon;
+            return (
+              <Card 
+                key={tab.id}
+                className={`cursor-pointer transition-all duration-200 hover:shadow-lg ${
+                  activeTab === tab.id 
+                    ? 'bg-primary text-primary-foreground border-primary' 
+                    : 'bg-background hover:bg-muted/50'
+                }`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                <CardContent className="flex flex-col items-center justify-center p-4 h-24">
+                  <IconComponent className="h-6 w-6 mb-2" />
+                  <span className="text-xs sm:text-sm font-medium text-center">{tab.label}</span>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+
+        {/* Active Tab Content */}
+        <div className="mt-6">
+          {renderTabContent()}
+        </div>
       </div>
     </div>
   );
